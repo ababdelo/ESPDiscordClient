@@ -1,0 +1,25 @@
+#######################################
+# Syntax Coloring Map For ESP Discord Client
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DiscordClient	KEYWORD1
+NetTime	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+connectWiFi	KEYWORD2
+sendMessage	KEYWORD2
+begin	KEYWORD2
+getTime	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+ESP_DISCORD_CLIENT_VERSION	LITERAL1
