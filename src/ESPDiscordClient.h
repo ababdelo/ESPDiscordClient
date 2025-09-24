@@ -13,7 +13,7 @@
 
   Author: Abderrahmane Abdelouafi
   Version: 1.0.0
-  License: PERSONAL USE NON COMMERCIAL LICENSE (see LICENSE.md for details)
+  License: MIT
 */
 
 #ifndef ESP_DISCORD_CLIENT_H
