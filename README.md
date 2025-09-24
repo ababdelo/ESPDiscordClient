@@ -9,23 +9,23 @@
 An Arduino library for ESP8266 and ESP32 microcontrollers to send messages to Discord using webhooks with automatic timestamps.
 
 <p align="center">
+  <a href="https://www.arduino.cc/en/Reference/Libraries"><img src="https://img.shields.io/badge/Arduino-Library-blue.svg" /></a>
+  <a href="https://github.com/esp8266/Arduino"><img src="https://img.shields.io/badge/ESP-8266-red.svg" /></a>
+  <a href="https://github.com/espressif/arduino-esp32"><img src="https://img.shields.io/badge/ESP-32-red.svg" /></a>
+
   <img src="https://img.shields.io/github/last-commit/ababdelo/ESPDiscordClient?style=flat-square" />
   <img src="https://img.shields.io/github/commit-activity/m/ababdelo/ESPDiscordClient?style=flat-square" />
   <img src="https://img.shields.io/github/followers/ababdelo?style=flat-square" />
   <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fababdelo%2FESPDiscordClient&label=Repository%20Visits&countColor=%230c7ebe&style=flat&labelStyle=none"/>
   <img src="https://img.shields.io/github/stars/ababdelo/ESPDiscordClient?style=flat-square" />
   <img src="https://img.shields.io/github/contributors/ababdelo/ESPDiscordClient?style=flat-square" />
-  <br><br>
-  <a href="https://www.arduino.cc/en/Reference/Libraries"><img src="https://img.shields.io/badge/Arduino-Library-blue.svg" /></a>
-  <a href="https://github.com/esp8266/Arduino"><img src="https://img.shields.io/badge/ESP-8266-red.svg" /></a>
-  <a href="https://github.com/espressif/arduino-esp32"><img src="https://img.shields.io/badge/ESP-32-red.svg" /></a>
 </p>
 
 ## 📸 Preview
 
 See the ESP Discord Client in action:
 
-![ESP Discord Client Preview](extras/preview/screely-1758567154965.png)
+![ESP Discord Client Preview](extras/preview/preview.webp)
 
 ## 📋 Features
 
@@ -384,7 +384,7 @@ Enable detailed debugging by monitoring Serial output at 9600 baud:
 
 ## 📄 License
 
-This project is open source and available under the [NON COMMERCIAL LICENSE](LICENSE.md).
+This project is open source and available under the [MIT LICENSE](LICENSE.md).
 
 ## 🙏 Acknowledgments
 
