@@ -17,8 +17,7 @@ private:
   NTPClient timeClient;
 
   const char *weekDays[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-  const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-                            "Aug", "Sept", "Oct", "Nov", "Dec"};
+  const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"};
 };
 
 #endif
