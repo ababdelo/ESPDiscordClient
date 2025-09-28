@@ -19,7 +19,7 @@ class DiscordClient
 public:
   DiscordClient(const char *ssid, const char *password, const char *webhookUrl, int timezone = 0);
   void connectWiFi();
-  bool sendMessage(const String &content);
+  bool sendMessage(const String &content, bool includeTimestamp = true);
 
 private:
   const char *ssid;
