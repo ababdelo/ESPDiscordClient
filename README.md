@@ -6,7 +6,7 @@
  
  ![ESP Discord Client](https://socialify.git.ci/ababdelo/ESPDiscordClient/image?font=Raleway&language=1&name=1&owner=1&pattern=Circuit+Board&theme=Light)
 
-An Arduino library for ESP8266 and ESP32 microcontrollers to send messages to Discord using webhooks with automatic timestamps.
+An Arduino library for ESP8266 and ESP32 microcontrollers to send messages to Discord using webhooks with optional automatic timestamps.
 
 <p align="center">
   <a href="https://www.arduino.cc/en/Reference/Libraries"><img src="https://img.shields.io/badge/Arduino-Library-blue.svg" /></a>
@@ -32,7 +32,7 @@ See the ESP Discord Client in action:
 - ✨ **Cross-Platform**: Works on both ESP8266 and ESP32
 - 📡 **WiFi Management**: Automatic WiFi connection handling
 - 🔔 **Discord Integration**: Send messages via Discord webhooks
-- ⏰ **Timestamps**: Automatic timestamp generation with timezone support
+- ⏰ **Optional Timestamps**: Automatic timestamp generation with timezone support (can be enabled/disabled per message)
 - 🔒 **Secure**: HTTPS communication with Discord
 - 🎨 **Custom Branding**: Messages appear with ESP logo avatar and custom username
 - 📝 **Simple API**: Easy to use with minimal setup
@@ -44,7 +44,7 @@ See the ESP Discord Client in action:
 
 1. Open Arduino IDE
 2. Go to **Sketch** → **Include Library** → **Manage Libraries**
-3. Search for "ESP Discord Client"
+3. Search for "ESPDiscordClient"
 4. Click **Install**
 
 ### Manual Installation
@@ -64,27 +64,8 @@ This library requires:
 
 ## ⚡ Quick Start
 
-```cpp
-#include <ESPDiscordClient.h>
-#include "Config.hpp" // Contains your WiFi credentials and timezone
-
-// Create Discord client instance with timezone support
-DiscordClient discord(SECRET_SSID, SECRET_PASS, SECRET_WEBHOOK, TIME_ZONE);
-
-void setup() {
-  Serial.begin(9600);
-
-  // Connect to WiFi
-  discord.connectWiFi();
-
-  // Send message with automatic timestamp
-  discord.sendMessage("Hello from ESP42!");
-}
-
-void loop() {
-  // Your code here
-}
-```
+Use the provided example to get started quickly. Open Arduino IDE and navigate to:
+**File** → **Examples** → **ESPDiscordClient** → **BasicUsage**.
 
 ## 🛠 Hardware Requirements
 
@@ -179,7 +160,7 @@ Edit `Config.hpp` with your information:
 #define TIME_ZONE 0 // Your timezone offset in hours (e.g., 1 for GMT+1, -5 for EST)
 ```
 
-**⚠️ Security Note**: Never commit real credentials to version control. Consider using environment variables or a separate config file for production.
+**⚠️ Security Note**: Never commit real credentials to version control. Consider ignoring `Config.hpp` in `.gitignore` for testing.
 
 ### Timezone Configuration
 
@@ -231,7 +212,7 @@ void setup() {
   discord.connectWiFi();
 
   // Send a message
-  discord.sendMessage("Hello from ESP42!");
+  discord.sendMessage("Hello from ESP42!", false);
 }
 
 void loop() {
@@ -242,24 +223,44 @@ void loop() {
 ### Advanced Usage
 
 ```cpp
-// Send sensor data
+// Send sensor data with timestamp (default behavior)
 float temperature = 25.6;
-String message = "Temperature: " + String(temperature) + "°C";
-discord.sendMessage(message);
+String message = "🌡️ Temperature: " + String(temperature) + "°C";
+discord.sendMessage(message); // Includes timestamp
 
-// Send alerts
+// Send alerts with timestamp
 if (temperature > 30) {
-  discord.sendMessage("⚠️ High temperature alert!");
+  discord.sendMessage("🚨⚠️ HIGH TEMPERATURE ALERT ⚠️🚨", true);
 }
+
+// Explicit timestamp control
+discord.sendMessage("📊 System initialized", false);  // without timestamp
 ```
+
+### 🕒 Timestamp Control (New in v1.1.0)
+
+The library now supports optional timestamps, giving you full control over when to include them:
+
+```cpp
+// Without including timestamp
+discord.sendMessage("Hello World!", false);
+// Result: "Hello World!"
+
+// With timestamp - Default behavior
+discord.sendMessage("⚠️⚠️⚠️ ALERT ⚠️⚠️⚠️");
+// Result: "⚠️⚠️⚠️ ALERT ⚠️⚠️⚠️ Sun 28 Sept 2025 14:30:20"
+```
+
+**Use Cases:**
+- **With Timestamp**: Sensor readings, system events, logs, Alerts
+- **Without Timestamp**: Status indicators, emoji-only or welcoming messages
 
 ### 🎨 Webhook Customization
 
 The library automatically sends messages with:
 
 - **Custom Username**: "ESP Discord Client"
-- **ESP Logo Avatar**: Uses the ESP logo from the project as the webhook avatar
-- **Branded Appearance**: Messages appear with consistent ESP branding in Discord
+- **ESP Logo Avatar**: Uses the ESP logo from the project as the webhook avatar or set your own preferred one
 
 This gives your ESP device messages a professional, recognizable appearance in Discord channels.
 
@@ -318,11 +319,13 @@ DiscordClient(const char *ssid, const char *password, const char *webhookUrl, in
 - Blocks until connection is established
 - Prints connection status to Serial
 
-**`bool sendMessage(const String &content)`**
+**`bool sendMessage(const String &content, bool includeTimestamp = true)`**
 
 - Sends a message to Discord
-- Automatically appends timestamp
+- `content`: The message text to send
+- `includeTimestamp`: Optional parameter to control timestamp inclusion (defaults to `true`)
 - Returns `true` if successful, `false` otherwise
+- **New in v1.1.0**: Optional timestamp control for flexible messaging
 
 ### NetTime Class
 
@@ -373,6 +376,23 @@ Enable detailed debugging by monitoring Serial output at 9600 baud:
 - `400`: Bad Request (check webhook URL/format)
 - `401`: Unauthorized (webhook may be invalid)
 - `429`: Rate Limited (too many requests)
+
+## 📋 Changelog
+
+### Version 1.1.0 (Latest)
+- ✨ **New Feature**: Optional timestamp control with `includeTimestamp` parameter
+- 🔧 **Improvement**: Better Arduino Library Manager compliance (removed spaces from library name)
+- 📝 **Enhancement**: Updated examples to demonstrate new timestamp feature
+- 🏗️ **Refactor**: Optimized time client initialization (only when needed)
+- 📚 **Documentation**: Updated README with comprehensive timestamp usage examples
+
+### Version 1.0.0
+- 🎉 Initial release
+- ✨ Cross-platform support for ESP8266 and ESP32
+- 📡 WiFi management with connection handling
+- 🔔 Discord webhook integration
+- ⏰ Automatic timestamp generation with timezone support
+- 🔒 Secure HTTPS communication
 
 ## 🤝 Contributing
 
