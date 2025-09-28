@@ -1,8 +1,9 @@
 #include "DiscordClient.hpp"
 
 DiscordClient::DiscordClient(const char *ssid, const char *password, const char *webhookUrl, int timezone)
-    : ssid(ssid), password(password), webhookUrl(webhookUrl), _timezone(timezone), _timeInitialized(false) {
-  
+    : ssid(ssid), password(password), webhookUrl(webhookUrl), _timezone(timezone), _timeInitialized(false)
+{
+
   // Display platform information when Discord client is initialized
 #if defined(ESP8266)
   Serial.println("\nESP Discord Client - Running on ESP8266");
@@ -23,7 +24,7 @@ void DiscordClient::connectWiFi()
   Serial.println("\nConnected to WiFi");
 }
 
-bool DiscordClient::sendMessage(const String &content)
+bool DiscordClient::sendMessage(const String &content, bool includeTimestamp)
 {
   // Validate webhook URL
   if (webhookUrl == nullptr || strlen(webhookUrl) == 0)
@@ -41,15 +42,21 @@ bool DiscordClient::sendMessage(const String &content)
   WiFiClientSecure client;
   HTTPClient http;
 
-  // Initialize time client only once
-  if (!_timeInitialized)
-  {
-    netTime.begin(_timezone);
-    _timeInitialized = true;
-  }
+  String message = content;
 
-  String currentTime = netTime.getTime();
-  String message = content + " at " + currentTime;
+  // Only initialize time and append timestamp if requested
+  if (includeTimestamp)
+  {
+    // Initialize time client only once
+    if (!_timeInitialized)
+    {
+      netTime.begin(_timezone);
+      _timeInitialized = true;
+    }
+
+    String currentTime = netTime.getTime();
+    message = content + " " + currentTime;
+  }
 
   client.setInsecure(); // Ignore invalid SSL certs
 
@@ -65,7 +72,7 @@ bool DiscordClient::sendMessage(const String &content)
     // Set timeouts for HTTP client
     http.setTimeout(15000); // 15 seconds timeout
     http.addHeader("Content-Type", "application/json");
-    http.addHeader("User-Agent", "ESP-Discord-Client/1.0");
+    http.addHeader("User-Agent", "ESP-Discord-Client/1.1");
 
     http.addHeader("Content-Type", "application/json");
     String json = "{\"content\":\"" + message + "\"}";
