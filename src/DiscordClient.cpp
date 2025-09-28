@@ -63,11 +63,9 @@ bool DiscordClient::sendMessage(const String &content, bool includeTimestamp)
   // Add timeout settings
   client.setTimeout(15000); // 15 seconds timeout
 
-  Serial.print("Connecting to Discord...");
-
   if (http.begin(client, webhookUrl))
   {
-    Serial.println(" Connected to Discord");
+    Serial.println(" Connection to Discord established successfully.");
 
     // Set timeouts for HTTP client
     http.setTimeout(15000); // 15 seconds timeout
