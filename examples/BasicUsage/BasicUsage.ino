@@ -7,24 +7,26 @@ DiscordClient discord(SECRET_SSID, SECRET_PASS, SECRET_WEBHOOK, TIME_ZONE);
 void setup()
 {
   Serial.begin(9600);
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
-
+  
   delay(1000);
 
   // Connect to WiFi
   discord.connectWiFi();
 
-  // Send messages with automatic timestamp
-  discord.sendMessage("Hello from ESP42!");
+  
+  // Send simple message without timestamp
+  discord.sendMessage("Hi there! 👋", false);
 
-  // Examples with different content
-  // discord.sendMessage("🚀 ESP Discord Client initialized successfully");
+  // Examples with timestamp (explicit)
+  // discord.sendMessage("🚀 ESP Discord Client initialized successfully"); // Default adds timestamp
 
-  // Send sensor data
+  // Send sensor data with timestamp
   // float temperature = 13.42;
   // String sensorMsg = "🌡️ Temperature: " + String(temperature) + "°C";
-  // discord.sendMessage(sensorMsg);
+  // discord.sendMessage(sensorMsg, true);  // with timestamp
+  
+  // Send alert with timestamp
+  // discord.sendMessage("🚨 ALERT: SYSTEM IS OVERHEATING 🚨", true);
 }
 
 void loop()
