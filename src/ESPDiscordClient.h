@@ -2,17 +2,17 @@
   ESP Discord Client Library
 
   A cross-platform Arduino library for ESP8266 and ESP32 microcontrollers
-  to send messages to Discord using webhooks with automatic timestamps.
+  to send messages to Discord using webhooks with optional automatic timestamps.
 
   Features:
   - Cross-platform ESP8266/ESP32 support
   - WiFi connectivity management
   - Discord webhook messaging
-  - Automatic timestamp generation
+  - Optional automatic timestamp generation
   - Secure HTTPS communication
 
   Author: Abderrahmane Abdelouafi
-  Version: 1.0.0
+  Version: 1.1.0
   License: MIT
 */
 
@@ -20,7 +20,7 @@
 #define ESP_DISCORD_CLIENT_H
 
 // Include all library components
-#include "src/DiscordClient.hpp"
+#include "DiscordClient.hpp"
 
 // Library version
 #define ESP_DISCORD_CLIENT_VERSION "1.1.0"
