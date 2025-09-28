@@ -4,9 +4,8 @@
 
  <br>
  
- ![ESP Discord Client](https://socialify.git.ci/ababdelo/ESPDiscordClient/image?font=Raleway&language=1&name=1&owner=1&pattern=Circuit+Board&theme=Light)
+![ESPDiscordClient](https://socialify.git.ci/ababdelo/ESPDiscordClient/image?custom_description=An+Arduino+library+for+ESP8266+and+ESP32+microcontrollers+to+send+messages+to+Discord+using+webhooks+with+optional+automatic+timestamps.&description=1&forks=1&issues=1&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2Fababdelo%2FESPDiscordClient%2Frefs%2Fheads%2Fmain%2Fextras%2Flogo%2Flogo-tr.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Light)
 
-An Arduino library for ESP8266 and ESP32 microcontrollers to send messages to Discord using webhooks with optional automatic timestamps.
 
 <p align="center">
   <a href="https://www.arduino.cc/en/Reference/Libraries"><img src="https://img.shields.io/badge/Arduino-Library-blue.svg" /></a>
