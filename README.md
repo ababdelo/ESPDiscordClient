@@ -43,7 +43,7 @@ See the ESP Discord Client in action:
 
 1. Open Arduino IDE
 2. Go to **Sketch** → **Include Library** → **Manage Libraries**
-3. Search for "ESPDiscordClient"
+3. Search for "ESP Discord Client"
 4. Click **Install**
 
 ### Manual Installation
